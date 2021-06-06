@@ -9,10 +9,10 @@ class RootPage extends BaseWidget {
   RootPage(TemplateBloc Function() getBloc) : super(getBloc);
 
   @override
-  _RoorPageState createState() => _RoorPageState();
+  _RootPageState createState() => _RootPageState();
 }
 
-class _RoorPageState extends BaseState<RootPage, BaseBloc> {
+class _RootPageState extends BaseState<RootPage, BaseBloc> {
   @override
   Widget build(BuildContext context) {
     return mainWidget();
@@ -28,7 +28,7 @@ class _RoorPageState extends BaseState<RootPage, BaseBloc> {
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  getCustomWidget(),
+                  getCustomWidget(snapshot.data?.isHorizontalStyle ?? false),
                   SizedBox(height: 50),
                   Text('${translate('root_page')}'),
                   SizedBox(height: 20),
@@ -38,7 +38,11 @@ class _RoorPageState extends BaseState<RootPage, BaseBloc> {
         });
   }
 
-  Widget getCustomWidget() {
-    return FlutterLogo(size: 100);
+  Widget getCustomWidget(bool isHorizontalStyle) {
+    return FlutterLogo(
+      size: isHorizontalStyle ? MediaQuery.of(context).size.width * 0.8 : MediaQuery.of(context).size.width * 0.5,
+      duration: Duration(seconds: 3),
+      style: isHorizontalStyle == true ? FlutterLogoStyle.horizontal : FlutterLogoStyle.markOnly,
+    );
   }
 }

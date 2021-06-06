@@ -2,5 +2,6 @@
   "app_name": "NomeApp",
   "error": "Errore",
   "root_page": "Pagina root",
-  "welcome_to": "Benvenuto a"
+  "welcome_to": "Benvenuto a",
+  "data_was_not_previously_saved": "Nessun data salvato in precedenza"
 }

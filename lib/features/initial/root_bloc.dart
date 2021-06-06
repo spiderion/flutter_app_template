@@ -19,6 +19,13 @@ class InitialBloc extends TemplateBloc {
 
   void init() {
     initialDataStateController.sink.add(InitialDataState('Initial data:', appName));
+    fetchUserName();
+    Future.delayed(Duration(seconds: 1), () {
+      initialDataStateController.sink.add(InitialDataState('Initial data:', appName, isHorizontalStyle: true));
+    });
+  }
+
+  void fetchUserName() {
     userUseCase.getUserName(onSuccess: (String userName) {
       initialDataStateController.sink.add(InitialDataState('from database:', userName));
     }, onError: (Error e) {
