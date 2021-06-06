@@ -5,5 +5,5 @@ import 'package:flutter_app_template/dependency/dependency_module.dart';
 void main() {
   final dependencyModule = DependencyModule();
   final subModules = dependencyModule.getReadySubModules();
-  runApp(App(subModules: subModules));
+  runApp(App(subModules, appTitle: 'Template App'));
 }

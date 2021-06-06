@@ -1,5 +1,5 @@
 name: flutter_app_template
-description: A new app template
+description: A new template app
 
 publish_to: 'none'
 version: 1.0.0+1
@@ -18,7 +18,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/locale/
+    - assets/images/
