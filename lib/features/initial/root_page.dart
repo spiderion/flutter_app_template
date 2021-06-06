@@ -9,20 +9,36 @@ class RootPage extends BaseWidget {
   RootPage(TemplateBloc Function() getBloc) : super(getBloc);
 
   @override
-  _InitialPageState createState() => _InitialPageState();
+  _RoorPageState createState() => _RoorPageState();
 }
 
-class _InitialPageState extends BaseState<RootPage, BaseBloc> {
+class _RoorPageState extends BaseState<RootPage, BaseBloc> {
   @override
   Widget build(BuildContext context) {
     return mainWidget();
   }
 
   Widget mainWidget() {
-    return StreamBuilder<BackgroundColorDateState>(
-        stream: bloc.getStreamOfType<BackgroundColorDateState>(),
-        builder: (BuildContext context, AsyncSnapshot<BackgroundColorDateState> snapshot) {
-          return Scaffold(body: Center(child: Text('First Page: ${snapshot.data?.color ?? ""}')));
+    return StreamBuilder<InitialDataState>(
+        stream: bloc.getStreamOfType<InitialDataState>(),
+        builder: (BuildContext context, AsyncSnapshot<InitialDataState> snapshot) {
+          return Scaffold(
+              appBar: AppBar(centerTitle: true, title: Text(snapshot.data?.appName ?? "")),
+              body: Center(
+                  child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  getCustomWidget(),
+                  SizedBox(height: 50),
+                  Text('${translate('root_page')}'),
+                  SizedBox(height: 20),
+                  Text('${translate('welcome_to')} ${snapshot.data?.appName ?? ''}'),
+                ],
+              )));
         });
+  }
+
+  Widget getCustomWidget() {
+    return FlutterLogo(size: 100);
   }
 }

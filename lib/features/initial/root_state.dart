@@ -1,7 +1,8 @@
 import 'package:template_package/template_package.dart';
 
-class BackgroundColorDateState extends BaseBlocDataState {
-  final String color;
+class InitialDataState extends BaseBlocDataState {
+  final String text;
+  final String appName;
 
-  BackgroundColorDateState(this.color);
+  InitialDataState(this.text, this.appName);
 }

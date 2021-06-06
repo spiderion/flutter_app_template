@@ -1,4 +1,6 @@
 {
   "app_name": "AppName",
-  "error": "Error"
+  "error": "Error",
+  "root_page": "Root Page",
+  "welcome_to": "Welcome to"
 }

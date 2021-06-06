@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_app_template/dependency/sub_modules/bloc_sub_module.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:template_package/template_package.dart';
 
@@ -29,14 +28,12 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    BlocSubModule blocSubModule =
-        widget.subModules.singleWhere((ISubModule element) => element is BlocSubModule) as BlocSubModule;
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       theme: getThemeNotifier().value,
       title: widget.appTitle,
       home: FutureBuilder(
-          future: getPageLauncher().decideFirstScreen(),
+          future: getPageLauncher().decideFirstScreen(appName: widget.appTitle),
           builder: (context, AsyncSnapshot<Widget> snapshot) {
             if (snapshot.hasData) {
               return snapshot.data!;
