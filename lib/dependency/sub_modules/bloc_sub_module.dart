@@ -1,5 +1,5 @@
 import 'package:flutter_app_template/dependency/sub_modules/use_case_sub_module.dart';
-import 'package:flutter_app_template/features/initial/root_bloc.dart';
+import 'package:flutter_app_template/features/initial/initial_bloc.dart';
 import 'package:template_package/template_package.dart';
 
 import 'core_sub_module.dart';
@@ -14,5 +14,5 @@ class BlocSubModule extends ISubModule {
     _useCaseSubModule = subModules.singleWhere((element) => element is UseCaseSubModule) as UseCaseSubModule;
   }
 
-  RootBloc rootBloc(String appName) => RootBloc(_coreSubModule.analytics(), _useCaseSubModule.userUseCase(), appName);
+  InitialBloc rootBloc(String appName) => InitialBloc(_coreSubModule.analytics(), _useCaseSubModule.userUseCase(), appName);
 }

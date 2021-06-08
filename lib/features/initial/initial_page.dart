@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_app_template/features/initial/root_event.dart';
-import 'package:flutter_app_template/features/initial/root_state.dart';
+import 'package:flutter_app_template/features/initial/initial_event.dart';
+import 'package:flutter_app_template/features/initial/initial_state.dart';
 import 'package:template_package/base_widget/base_widget.dart';
 import 'package:template_package/template_bloc/template_bloc.dart';
 import 'package:template_package/template_package.dart';
 
-class RootPage extends BaseWidget {
-  RootPage(TemplateBloc Function() getBloc) : super(getBloc);
+class InitialPage extends BaseWidget {
+  InitialPage(TemplateBloc Function() getBloc) : super(getBloc);
 
   @override
-  _RootPageState createState() => _RootPageState();
+  _InitialPageState createState() => _InitialPageState();
 }
 
-class _RootPageState extends BaseState<RootPage, BaseBloc> {
+class _InitialPageState extends BaseState<InitialPage, BaseBloc> {
   @override
-  Widget build(BuildContext context) {
-    return mainWidget();
-  }
+  Widget build(BuildContext context) => mainWidget();
 
   Widget mainWidget() {
     return StreamBuilder<InitialDataState>(

@@ -5,5 +5,7 @@
   "welcome_to": "Benvenuto a",
   "data_was_not_previously_saved": "Nessun data salvato in precedenza",
   "save_data": "Salva Data",
+  "saved": "Salvato",
+  "success": "Success",
   "get_data": "Prendi Data"
 }

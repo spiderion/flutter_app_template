@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app_template/dependency/sub_modules/bloc_sub_module.dart';
-import 'package:flutter_app_template/features/initial/root_page.dart';
+import 'package:flutter_app_template/features/initial/initial_page.dart';
 import 'package:template_package/template_package.dart';
 
 class FirstPageLauncherABR implements ABR {
@@ -18,7 +18,7 @@ class FirstPageLauncherABR implements ABR {
 
   Widget getRequiredOptionPage(userProfile) => Scaffold(body: Center(child: Text("optionRequired")));
 
-  Widget getRootPage(String appName) => RootPage(() => _blocSubModule.rootBloc(appName));
+  Widget getRootPage(String appName) => InitialPage(() => _blocSubModule.rootBloc(appName));
 
   Widget getMaintenancePage() => Scaffold(body: Center(child: Text("maintenance")));
 
