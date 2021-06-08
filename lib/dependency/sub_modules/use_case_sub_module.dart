@@ -10,5 +10,5 @@ class UseCaseSubModule extends ISubModule {
     _repositorySubModule = subModules.singleWhere((element) => element is RepositorySubModule) as RepositorySubModule;
   }
 
-  UserUseCase userUseCase() => UserUseCase(_repositorySubModule.userRepository());
+  SomeUseCase userUseCase() => SomeUseCase(_repositorySubModule.userRepository());
 }

@@ -9,11 +9,11 @@ class DataBase extends Dao {
 
   @override
   Future<dynamic> getSomeData() async {
-    return _db[DbPaths.USER_NAME_KEY];
+    return _db[DbPaths.SOME_DATA_KEY];
   }
 
   @override
-  Future<dynamic> setSomeData(dynamic userName) async {
-    _db[DbPaths.USER_NAME_KEY] = userName;
+  Future<dynamic> setSomeData(dynamic someData) async {
+    _db[DbPaths.SOME_DATA_KEY] = someData;
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter_app_template/core/data/dao.dart';
+import 'package:flutter_app_template/core/models/some_model.dart';
 import 'package:template_package/template_package.dart';
 
 class InitialRepository extends BaseRepository {
@@ -8,14 +9,16 @@ class InitialRepository extends BaseRepository {
       : super(remoteConfiguration, exceptionCaptor);
 
   Future<ResultModel> getSomeData() async {
+    return exceptionCaptor.execute(() async {
+      final result = await _dao.getSomeData();
+      return ResultSuccess(result: SomeModel.fromJson(result));
+    });
+  }
+
+  Future<ResultModel> setSomeData(SomeModel someData) async {
     return exceptionCaptor.execute(() {
-      // use this part to deserialize too
-      final result = _dao.getSomeData();
-      if (result is String) {
-        return ResultSuccess(result: result);
-      } else {
-        return ServerError(message: 'data_was_not_previously_saved');
-      }
+      final result = _dao.setSomeData(someData.toJson());
+      return ResultSuccess(result: result);
     });
   }
 }

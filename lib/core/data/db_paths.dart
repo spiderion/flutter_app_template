@@ -1,3 +1,3 @@
 class DbPaths {
-  static const String USER_NAME_KEY = 'USER_NAME_KEY';
+  static const String SOME_DATA_KEY = 'SOME_DATA_KEY';
 }

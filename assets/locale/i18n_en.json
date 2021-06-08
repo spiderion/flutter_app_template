@@ -3,5 +3,7 @@
   "error": "Error",
   "root_page": "Root Page",
   "welcome_to": "Welcome to",
-  "data_was_not_previously_saved": "Data was not previously saved"
+  "data_was_not_previously_saved": "Data was not previously saved",
+  "save_data": "Save Data",
+  "get_data": "Get Data"
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_app_template/features/initial/root_event.dart';
 import 'package:flutter_app_template/features/initial/root_state.dart';
 import 'package:template_package/base_widget/base_widget.dart';
 import 'package:template_package/template_bloc/template_bloc.dart';
@@ -23,6 +24,8 @@ class _RootPageState extends BaseState<RootPage, BaseBloc> {
         stream: bloc.getStreamOfType<InitialDataState>(),
         builder: (BuildContext context, AsyncSnapshot<InitialDataState> snapshot) {
           return Scaffold(
+              floatingActionButton: saveButton(),
+              floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
               appBar: AppBar(centerTitle: true, title: Text(snapshot.data?.appName ?? "")),
               body: Center(
                   child: Column(
@@ -32,10 +35,28 @@ class _RootPageState extends BaseState<RootPage, BaseBloc> {
                   SizedBox(height: 50),
                   Text('${translate('root_page')}'),
                   SizedBox(height: 20),
-                  Text('${translate('welcome_to')} ${snapshot.data?.appName ?? ''}'),
+                  Text('${translate('welcome_to')} ${snapshot.data?.someData ?? ''}'),
                 ],
               )));
         });
+  }
+
+  Widget saveButton() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        ElevatedButton(
+            onPressed: () {
+              bloc.event.add(SaveDataEvent('analytic_event_name_set', 'some data'));
+            },
+            child: Text(translate('save_data'))),
+        ElevatedButton(
+            onPressed: () {
+              bloc.event.add(GetDataEvent('analytic_event_name_get'));
+            },
+            child: Text(translate('get_data'))),
+      ],
+    );
   }
 
   Widget getCustomWidget(bool isHorizontalStyle) {

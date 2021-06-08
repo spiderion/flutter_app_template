@@ -1,5 +1,5 @@
 abstract class Dao {
-  Future<dynamic> setSomeData(dynamic userName);
+  Future<dynamic> setSomeData(Map<String, dynamic> mapData);
 
   Future<dynamic> getSomeData();
 }
