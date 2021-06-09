@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_app_template/core/models/some_model.dart';
+import 'package:flutter_app_template/core/states/primary_states/error_states/error_full_screen.dart';
 import 'package:flutter_app_template/core/use_cases/user_use_case.dart';
 import 'package:flutter_app_template/features/initial/initial_event.dart';
 import 'package:flutter_app_template/features/initial/initial_state.dart';
@@ -42,7 +43,11 @@ class InitialBloc extends TemplateBloc {
           isHorizontalStyle: true));
       sinkState?.add(MessageInfoState("success"));
     }, onError: (Error e) {
-      sinkState?.add(ErrorState(error: e));
+      sinkState?.add(ErrorFullScreenState(
+          error: e,
+          onCtaTap: () {
+            sinkState?.add(MaybePopState());
+          }));
     }));
   }
 
@@ -50,12 +55,8 @@ class InitialBloc extends TemplateBloc {
     final someModel = SomeModel('some data');
     someUseCase.setSomeData(RequestObserver<SomeModel?, dynamic>(
         requestData: someModel,
-        onListen: (_) {
-          sinkState?.add(MessageInfoState("saved"));
-        },
-        onError: (e) {
-          sinkState?.add(ErrorState(error: e));
-        }));
+        onListen: (_) => sinkState?.add(MessageInfoState("saved")),
+        onError: (e) => sinkState?.add(ErrorState(error: e))));
   }
 
   @override

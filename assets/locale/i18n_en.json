@@ -7,5 +7,7 @@
   "save_data": "Save Data",
   "saved": "Saved",
   "success": "Success",
-  "get_data": "Get Data"
+  "get_data": "Get Data",
+  "something_went_wrong": "Something went wrong",
+  "ok": "Ok"
 }
