@@ -34,25 +34,28 @@ class InitialBloc extends TemplateBloc {
   }
 
   void fetchData() {
-    someUseCase.getSomeData(onSuccess: (SomeModel someModel) {
+    someUseCase.getSomeData(RequestObserver(onListen: (SomeModel? someModel) {
       initialDataStateController.sink.add(InitialDataState(
           text: 'from database:',
           appName: appName,
-          someData: someModel.someData.toUpperCase(),
+          someData: someModel?.someData.toUpperCase() ?? "",
           isHorizontalStyle: true));
       sinkState?.add(MessageInfoState("success"));
     }, onError: (Error e) {
       sinkState?.add(ErrorState(error: e));
-    });
+    }));
   }
 
   void saveData(String data) {
     final someModel = SomeModel('some data');
-    someUseCase.setSomeData(someModel, onSuccess: () {
-      sinkState?.add(MessageInfoState("saved"));
-    }, onError: (Error error) {
-      sinkState?.add(ErrorState(error: error));
-    });
+    someUseCase.setSomeData(RequestObserver<SomeModel?, dynamic>(
+        requestData: someModel,
+        onListen: (_) {
+          sinkState?.add(MessageInfoState("saved"));
+        },
+        onError: (e) {
+          sinkState?.add(ErrorState(error: e));
+        }));
   }
 
   @override

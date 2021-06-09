@@ -8,17 +8,23 @@ class InitialRepository extends BaseRepository {
   InitialRepository(RemoteConfiguration remoteConfiguration, ExceptionCaptor exceptionCaptor, this._dao)
       : super(remoteConfiguration, exceptionCaptor);
 
-  Future<ResultModel> getSomeData() async {
-    return exceptionCaptor.execute(() async {
+  Future<void> getSomeData(RequestObserver<dynamic, SomeModel?> requestBehaviour) async {
+    try {
       final result = await _dao.getSomeData();
-      return ResultSuccess(result: SomeModel.fromJson(result));
-    });
+      requestBehaviour.onListen?.call(SomeModel.fromJson(result));
+    } catch (e, s) {
+      requestBehaviour.onError?.call(ServerError(message: e.toString()));
+      requestBehaviour.onDone?.call();
+    }
   }
 
-  Future<ResultModel> setSomeData(SomeModel someData) async {
-    return exceptionCaptor.execute(() {
-      final result = _dao.setSomeData(someData.toJson());
-      return ResultSuccess(result: result);
-    });
+  Future<void> setSomeData(RequestObserver<SomeModel?, dynamic> requestBehaviour) async {
+    try {
+      final result = await _dao.setSomeData(requestBehaviour.requestData!.toJson());
+      requestBehaviour.onListen?.call(result);
+    } catch (e, s) {
+      requestBehaviour.onError?.call(ServerError(message: e.toString()));
+      requestBehaviour.onDone?.call();
+    }
   }
 }

@@ -5,21 +5,22 @@ import 'package:template_package/template_package.dart';
 class SomeUseCase extends UseCase<ResultModel, ResultModel, InitialRepository> {
   SomeUseCase(InitialRepository repository) : super(repository);
 
-  Future<void> getSomeData({Function(SomeModel someModel)? onSuccess, Function(Error error)? onError}) async {
-    final either = await repository.getSomeData();
-    if (either is ResultSuccess) {
-      onSuccess?.call(either.result);
-    } else if (either is Error) {
-      onError?.call(either);
-    }
+  Future<void> getSomeData(RequestObserver<dynamic, SomeModel?> requestBehaviour) async {
+    await repository.getSomeData(RequestObserver<dynamic, SomeModel?>(
+        onListen: (SomeModel? data) {
+          // transform data here
+          requestBehaviour.onListen?.call(data);
+        },
+        onError: requestBehaviour.onError));
   }
 
-  Future<void> setSomeData(SomeModel someModel, {Function()? onSuccess, Function(Error error)? onError}) async {
-    final either = await repository.setSomeData(someModel);
-    if (either is ResultSuccess) {
-      onSuccess?.call();
-    } else if (either is Error) {
-      onError?.call(either);
-    }
+  Future<void> setSomeData(RequestObserver<SomeModel?, dynamic> requestBehaviour) async {
+    await repository.setSomeData(RequestObserver<SomeModel?, dynamic>(
+        requestData: requestBehaviour.requestData,
+        onListen: (_) {
+          // transform data here
+          requestBehaviour.onListen?.call(_);
+        },
+        onError: requestBehaviour.onError));
   }
 }
