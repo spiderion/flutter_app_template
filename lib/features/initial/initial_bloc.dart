@@ -53,7 +53,7 @@ class InitialBloc extends TemplateBloc {
 
   void saveData(String data) {
     final someModel = SomeModel('some data');
-    someUseCase.setSomeData(RequestObserver<SomeModel?, dynamic>(
+    someUseCase.setSomeData(RequestObserver(
         requestData: someModel,
         onListen: (_) => sinkState?.add(MessageInfoState("saved")),
         onError: (e) => sinkState?.add(ErrorState(error: e))));

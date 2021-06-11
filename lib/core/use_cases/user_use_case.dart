@@ -8,7 +8,6 @@ class SomeUseCase extends UseCase<ResultModel, ResultModel, InitialRepository> {
   Future<void> getSomeData(RequestObserver<dynamic, SomeModel?> requestBehaviour) async {
     await repository.getSomeData(RequestObserver<dynamic, SomeModel?>(
         onListen: (SomeModel? data) {
-          // transform data here
           requestBehaviour.onListen?.call(data);
         },
         onError: requestBehaviour.onError));
@@ -18,7 +17,6 @@ class SomeUseCase extends UseCase<ResultModel, ResultModel, InitialRepository> {
     await repository.setSomeData(RequestObserver<SomeModel?, dynamic>(
         requestData: requestBehaviour.requestData,
         onListen: (_) {
-          // transform data here
           requestBehaviour.onListen?.call(_);
         },
         onError: requestBehaviour.onError));
