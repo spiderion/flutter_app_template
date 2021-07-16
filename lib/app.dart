@@ -10,10 +10,9 @@ import 'dependency/sub_modules/locale_sub_module.dart';
 import 'dependency/sub_modules/value_notifier_sub_module.dart';
 
 class App extends StatefulWidget {
-  final String appTitle;
   final List<ISubModule> subModules;
 
-  const App(this.subModules, {Key? key, required this.appTitle}) : super(key: key);
+  const App(this.subModules, {Key? key}) : super(key: key);
 
   @override
   _AppState createState() => _AppState();
@@ -31,9 +30,8 @@ class _AppState extends State<App> {
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       theme: getThemeNotifier().value,
-      title: widget.appTitle,
       home: FutureBuilder(
-          future: getPageLauncher().decideFirstScreen(appName: widget.appTitle),
+          future: getPageLauncher().decideFirstScreen(),
           builder: (context, AsyncSnapshot<Widget> snapshot) {
             if (snapshot.hasData) {
               return snapshot.data!;

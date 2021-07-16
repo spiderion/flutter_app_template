@@ -14,5 +14,5 @@ class BlocSubModule extends ISubModule {
     _useCaseSubModule = subModules.singleWhere((element) => element is UseCaseSubModule) as UseCaseSubModule;
   }
 
-  InitialBloc rootBloc(String appName) => InitialBloc(_coreSubModule.analytics(), _useCaseSubModule.userUseCase(), appName);
+  InitialBloc rootBloc() => InitialBloc(_coreSubModule.analytics(), _useCaseSubModule.userUseCase());
 }

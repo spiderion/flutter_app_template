@@ -28,38 +28,48 @@ class _InitialPageState extends BaseState<InitialPage, BaseBloc> {
               body: Center(
                   child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   getCustomWidget(snapshot.data?.isHorizontalStyle ?? false),
                   SizedBox(height: 50),
-                  Text('${translate('root_page')}'),
+                  Text('${translate('app_package')}:\n ${snapshot.data?.appPackage ?? ''}'),
                   SizedBox(height: 20),
-                  Text('${translate('welcome_to')} ${snapshot.data?.someData ?? ''}'),
+                  Text('${translate('app_name')}:\n ${snapshot.data?.appName ?? ''}'),
+                  SizedBox(height: 20),
+                  Text('${translate('app_version')}:\n ${snapshot.data?.appVersion ?? ''}'),
                 ],
               )));
         });
   }
 
   Widget saveButton() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        ElevatedButton(
-            onPressed: () {
-              bloc.event.add(SaveDataEvent('analytic_event_name_set', 'some data'));
-            },
-            child: Text(translate('save_data'))),
-        ElevatedButton(
-            onPressed: () {
-              bloc.event.add(GetDataEvent('analytic_event_name_get'));
-            },
-            child: Text(translate('get_data'))),
-      ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 30.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  bloc.event.add(SaveDataEvent('analytic_event_name_set', 'some data'));
+                },
+                child: Text(translate('save_data'))),
+            ElevatedButton(
+                onPressed: () {
+                  bloc.event.add(GetDataEvent('analytic_event_name_get'));
+                },
+                child: Text(translate('get_data'))),
+          ],
+        ),
+      ),
     );
   }
 
   Widget getCustomWidget(bool isHorizontalStyle) {
     return FlutterLogo(
-      size: isHorizontalStyle ? MediaQuery.of(context).size.width * 0.8 : MediaQuery.of(context).size.width * 0.5,
+      size: isHorizontalStyle
+          ? MediaQuery.of(context).size.width * 0.8
+          : MediaQuery.of(context).size.width * 0.5,
       duration: Duration(seconds: 3),
       style: isHorizontalStyle == true ? FlutterLogoStyle.horizontal : FlutterLogoStyle.markOnly,
     );

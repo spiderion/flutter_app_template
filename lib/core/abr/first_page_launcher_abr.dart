@@ -9,16 +9,16 @@ class FirstPageLauncherABR implements ABR {
 
   FirstPageLauncherABR(this._blocSubModule);
 
-  Future<Widget> decideFirstScreen({dynamic userProfile, required String appName}) async {
+  Future<Widget> decideFirstScreen({dynamic userProfile}) async {
     if (!(await _isCurrentVersionAllowed())) {
       return getMaintenancePage();
     }
-    return getRootPage(appName);
+    return getRootPage();
   }
 
   Widget getRequiredOptionPage(userProfile) => Scaffold(body: Center(child: Text("optionRequired")));
 
-  Widget getRootPage(String appName) => InitialPage(() => _blocSubModule.rootBloc(appName));
+  Widget getRootPage() => InitialPage(() => _blocSubModule.rootBloc());
 
   Widget getMaintenancePage() => Scaffold(body: Center(child: Text("maintenance")));
 

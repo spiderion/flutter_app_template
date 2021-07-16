@@ -5,6 +5,7 @@ import 'package:flutter_app_template/core/states/primary_states/error_states/err
 import 'package:flutter_app_template/core/use_cases/user_use_case.dart';
 import 'package:flutter_app_template/features/initial/initial_event.dart';
 import 'package:flutter_app_template/features/initial/initial_state.dart';
+import 'package:package_info/package_info.dart';
 import 'package:template_package/analytics/base_analytics.dart';
 import 'package:template_package/error_state.dart';
 import 'package:template_package/primary_states/common.dart';
@@ -12,17 +13,23 @@ import 'package:template_package/template_bloc/template_bloc.dart';
 import 'package:template_package/template_package.dart';
 
 class InitialBloc extends TemplateBloc {
-  final String appName;
   final SomeUseCase someUseCase;
+  late PackageInfo _packageInfo;
   final StreamController initialDataStateController = StreamController<InitialDataState>();
 
-  InitialBloc(BaseAnalytics analytics, this.someUseCase, this.appName) : super(analytics) {
+  InitialBloc(BaseAnalytics analytics, this.someUseCase) : super(analytics) {
     registerStreams([initialDataStateController.stream]);
     init();
   }
 
-  void init() {
-    initialDataStateController.sink.add(InitialDataState(text: 'Initial data:', appName: appName));
+  void init() async {
+    _packageInfo = await PackageInfo.fromPlatform();
+    initialDataStateController.sink.add(InitialDataState(
+      text: 'Initial data:',
+      appName: _packageInfo.appName,
+      appPackage: _packageInfo.packageName,
+      appVersion: _packageInfo.version,
+    ));
   }
 
   @override
@@ -38,7 +45,9 @@ class InitialBloc extends TemplateBloc {
     someUseCase.getSomeData(RequestObserver(onListen: (SomeModel? someModel) {
       initialDataStateController.sink.add(InitialDataState(
           text: 'from database:',
-          appName: appName,
+          appName: _packageInfo.appName,
+          appVersion: _packageInfo.version,
+          appPackage: _packageInfo.packageName,
           someData: someModel?.someData.toUpperCase() ?? "",
           isHorizontalStyle: true));
       sinkState?.add(MessageInfoState("success"));
