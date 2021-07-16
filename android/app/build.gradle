@@ -23,6 +23,7 @@ if (flutterVersionName == null) {
 
 def dartEnvironmentVariables = [
         DEFINE_APP_NAME  : 'default name',
+        DEFINE_APP_ID  : 'com.default.app',
         DEFINE_APP_SUFFIX: null
 ]
 if (project.hasProperty('dart-defines')) {
@@ -46,7 +47,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.example.flutter_app_template"
+        applicationId dartEnvironmentVariables.DEFINE_APP_ID
         applicationIdSuffix dartEnvironmentVariables.DEFINE_APP_SUFFIX
         minSdkVersion 21
         targetSdkVersion 30
