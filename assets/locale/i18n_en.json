@@ -9,5 +9,7 @@
   "success": "Success",
   "get_data": "Get Data",
   "something_went_wrong": "Something went wrong",
-  "ok": "Ok"
+  "ok": "Ok",
+  "app_version": "App Version",
+  "app_package": "App Package"
 }

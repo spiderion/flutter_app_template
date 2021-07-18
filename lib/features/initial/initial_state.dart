@@ -5,6 +5,15 @@ class InitialDataState extends BaseBlocDataState {
   final String appName;
   final String someData;
   final bool isHorizontalStyle;
+  final String appPackage;
+  final String appVersion;
 
-  InitialDataState({required this.text, required this.appName, this.someData = '', this.isHorizontalStyle = false});
+  InitialDataState({
+    required this.text,
+    required this.appName,
+    this.someData = '',
+    this.isHorizontalStyle = false,
+    this.appPackage = 'unknown',
+    this.appVersion = 'unknown',
+  });
 }
