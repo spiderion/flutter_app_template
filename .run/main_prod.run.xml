@@ -2,6 +2,8 @@
   <configuration default="false" name="main_prod" type="FlutterRunConfigurationType" factoryName="Flutter">
     <option name="additionalArgs" value="--dart-define=DEFINE_APP_ID=com.template.app --dart-define=DEFINE_APP_NAME=PROD" />
     <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
-    <method v="2" />
+    <method v="2">
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_prod config" />
+    </method>
   </configuration>
 </component>

@@ -44,3 +44,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/firebase_config/dev/google-services.json
+/firebase_config/dev/GoogleService-Info.plist
+/firebase_config/prod/google-services.json
+/firebase_config/prod/GoogleService-Info.plist
