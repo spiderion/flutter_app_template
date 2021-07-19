@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_app_template/core/configuration/remote_config.dart';
 import 'package:flutter_app_template/core/data/dao.dart';
 import 'package:flutter_app_template/core/data/database.dart';
@@ -8,7 +9,9 @@ class CoreSubModule extends ISubModule {
   BaseAnalytics? _analytics;
 
   @override
-  init(List<ISubModule> subModules) {}
+  init(List<ISubModule> subModules) {
+    Firebase.initializeApp();
+  }
 
   BaseAnalytics analytics() {
     _analytics ??= AnalyticsProxy([]);

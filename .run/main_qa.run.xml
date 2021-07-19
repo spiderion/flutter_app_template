@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="main_qa" type="FlutterRunConfigurationType" factoryName="Flutter">
+    <option name="additionalArgs" value="--dart-define=DEFINE_APP_ID=com.template --dart-define=DEFINE_APP_NAME=QA --dart-define=DEFINE_APP_SUFFIX=.qa" />
+    <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+    <method v="2">
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_dev config" />
+    </method>
+  </configuration>
+</component>
