@@ -29,3 +29,5 @@ flutter:
   assets:
     - assets/locale/
     - assets/images/
+    - assets/country_codes.json
+
