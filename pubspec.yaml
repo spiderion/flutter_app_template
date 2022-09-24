@@ -13,12 +13,18 @@ dependencies:
 
   template_package: ^2.0.2
   package_info: ^2.0.2
+  flutter_launcher_icons: ^0.9.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
+flutter_icons:
+  android: "launcher_icon" #flutter pub run flutter_launcher_icons:main
+  ios: true
+  image_path: "assets/images/applogo.jpg"
+  image_path_android: "assets/images/applogo.jpg"
 
 flutter:
 
@@ -27,3 +33,5 @@ flutter:
   assets:
     - assets/locale/
     - assets/images/
+    - assets/country_codes.json
+
