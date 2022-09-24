@@ -5,8 +5,7 @@ import 'package:template_package/template_package.dart';
 class InitialRepository extends BaseRepository {
   final Dao _dao;
 
-  InitialRepository(RemoteConfiguration remoteConfiguration, ExceptionCaptor exceptionCaptor, this._dao)
-      : super(remoteConfiguration, exceptionCaptor);
+  InitialRepository(RemoteConfiguration remoteConfiguration, this._dao) : super(remoteConfiguration);
 
   Future<void> getSomeData(RequestObserver<dynamic, SomeModel?> requestBehaviour) async {
     try {
