@@ -7,7 +7,7 @@ configure-firebase-dev:
 configure-firebase-prod:
 	flutterfire configure $(firebaseConfigProd)
 
-firebaseConfigDev=--project=birthday-ai-dev \
+firebaseConfigDev=--project=your-firebase-project-name \ # use the name of the firebase project
 --ios-bundle-id=com.default.dev \
 --android-app-id=com.default.dev \
 --macos-bundle-id=com.default.dev \
