@@ -1,3 +1,4 @@
+import 'package:flutter_app_template/core/repositories/ai_request_repository.dart';
 import 'package:flutter_app_template/core/repositories/initial_repository.dart';
 import 'package:template_package/template_package.dart';
 
@@ -13,4 +14,10 @@ class RepositorySubModule extends ISubModule {
 
   InitialRepository userRepository() =>
       InitialRepository(_coreSubModule.remoteConfig(), _coreSubModule.dao());
+
+  AiRequestRepository aiRequestRepository() => AiRequestRepository(
+        _coreSubModule.remoteConfig(),
+        _coreSubModule.dao(),
+        _coreSubModule.httpService(),
+      );
 }
