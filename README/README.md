@@ -2,5 +2,7 @@
 
 Must read
 
-- Add the Firebase config files (google-services) under firebase_config (dev & prod)
-- Add a pre-build bash task to set your configuration (it will move the firebase files to the native folders)
+- add the name of the firebase project inside the makefile either for dev and for prod
+- run the configuration and make sure you are logged it with firebase
+- add the app AD ids in the app RUN configuration
+- add the name of you app package and app name

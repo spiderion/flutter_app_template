@@ -23,6 +23,6 @@ TextTheme _textTheme = ThemeData.light().textTheme;
 ColorScheme _colorScheme = baseColorScheme.copyWith(
     surface: Colors.white,
     onSurface: Colors.black,
-    background: Colors.white,
+    background: Colors.grey[200],
     onBackground: Colors.black,
     brightness: Brightness.light);

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_app_template/core/navigation_observers/navigation_observer.dart';
+import 'package:flutter_app_template/dependency/sub_modules/core_sub_module.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:template_package/template_package.dart';
 
@@ -27,9 +28,12 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    final CoreSubModule coreSubModule =
+        widget.subModules.firstWhere((element) => element is CoreSubModule) as CoreSubModule;
     return MaterialApp(
       debugShowCheckedModeBanner: true,
       theme: getThemeNotifier().value,
+      navigatorObservers: [DefaultNavigationObserver(analytics: coreSubModule.analytics())],
       home: FutureBuilder(
           future: getPageLauncher().decideFirstScreen(),
           builder: (context, AsyncSnapshot<Widget> snapshot) {
@@ -58,6 +62,7 @@ class _AppState extends State<App> {
       widget.subModules.whereType<LocaleSubModule>().first.translationDelegateInstance();
 
   ThemeNotifier getThemeNotifier() =>
-      (widget.subModules.singleWhere((element) => element is ValueNotifierSubModule) as ValueNotifierSubModule)
+      (widget.subModules.singleWhere((element) => element is ValueNotifierSubModule)
+              as ValueNotifierSubModule)
           .themeNotifier;
 }

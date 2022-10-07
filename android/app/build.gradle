@@ -22,9 +22,10 @@ if (flutterVersionName == null) {
 }
 
 def dartEnvironmentVariables = [
-        DEFINE_APP_NAME  : 'default name',
-        DEFINE_APP_ID  : 'com.default.app',
-        DEFINE_APP_SUFFIX: null
+        DEFINE_APP_NAME        : 'appName',
+        DEFINE_APP_ID          : 'com.defalut',
+        DEFINE_APP_SUFFIX      : '.dev',
+        DEFINE_APP_VERSION_CODE: '1',
 ]
 if (project.hasProperty('dart-defines')) {
     dartEnvironmentVariables = dartEnvironmentVariables + project.property('dart-defines')
@@ -36,6 +37,9 @@ if (project.hasProperty('dart-defines')) {
 }
 
 apply plugin: 'com.android.application'
+// START: FlutterFire Configuration
+apply plugin: 'com.google.gms.google-services'
+// END: FlutterFire Configuration
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
@@ -46,24 +50,38 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 33
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
+    def DEFINE_APP_ID = dartEnvironmentVariables.DEFINE_APP_ID
+    def DEFINE_APP_SUFFIX = dartEnvironmentVariables.DEFINE_APP_SUFFIX
+    def DEFINE_APP_NAME = dartEnvironmentVariables.DEFINE_APP_NAME
+    def DEFINE_ADS_ANDROID_ID = dartEnvironmentVariables.DEFINE_ADS_ANDROID_ID
+    def DEFINE_APP_VERSION_CODE = dartEnvironmentVariables.DEFINE_APP_VERSION_CODE.toInteger()
+
+    println('BUILDING ANDROID APP with config:')
+    println('app id: ' + DEFINE_APP_ID + DEFINE_APP_SUFFIX)
+    println('app name:' + DEFINE_APP_NAME)
+    println('ads id:' + DEFINE_ADS_ANDROID_ID)
+    println('versionCode: ' + DEFINE_APP_VERSION_CODE)
+
     defaultConfig {
-        applicationId dartEnvironmentVariables.DEFINE_APP_ID
-        applicationIdSuffix dartEnvironmentVariables.DEFINE_APP_SUFFIX
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode flutterVersionCode.toInteger()
+        applicationId DEFINE_APP_ID
+        applicationIdSuffix DEFINE_APP_SUFFIX
+        minSdkVersion 23
+        targetSdkVersion 33
+        versionCode DEFINE_APP_VERSION_CODE
         versionName flutterVersionName
-        resValue "string", "app_name", dartEnvironmentVariables.DEFINE_APP_NAME
-        resValue "string", "app_something", "something" // extra string
+        resValue "string", "app_name", DEFINE_APP_NAME
+        manifestPlaceholders = [mapsApiKey: 'DEFINE_MAPS_API_KEY_ANDROID_PASS_KEY_HERE',
+                                adsID     : DEFINE_ADS_ANDROID_ID,
+        ]
     }
 
-    signingConfigs {
+/*    signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
@@ -80,7 +98,7 @@ android {
         debug {
             signingConfig signingConfigs.debug
         }
-    }
+    }*/
 }
 
 flutter {
