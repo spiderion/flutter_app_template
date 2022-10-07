@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="main_prod" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="additionalArgs" value="--dart-define=DEFINE_APP_ID=com.template.app --dart-define=DEFINE_APP_NAME=PROD" />
+    <option name="additionalArgs" value="--dart-define=DEFINE_APP_ID=com.default --dart-define=DEFINE_APP_NAME=appName --dart-define=DEFINE_APP_SUFFIX=.prod --dart-define=DEFINE_ADS_ANDROID_ID=ca-app-pub-id --dart-define=DEFINE_ADS_IOS_ID=ca-app-pub-id" />
     <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
     <method v="2" />
   </configuration>
