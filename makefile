@@ -21,11 +21,11 @@ firebaseConfigProd=flutterfire configure \
 --platforms=ios,android
 
 configDev=--dart-define=DEFINE_APP_ID=com.default \
-          --dart-define=DEFINE_APP_NAME=AppName \
+          --dart-define=DEFINE_APP_NAME=AppNameDev \
           --dart-define=DEFINE_APP_SUFFIX=.dev
 
 configProd=--dart-define=DEFINE_APP_ID=com.default \
---dart-define=DEFINE_APP_NAME=Birth-D-AI \
+--dart-define=DEFINE_APP_NAME=AppNameProd \
 --dart-define=DEFINE_APP_SUFFIX=.prod
 
 buildType=--release
